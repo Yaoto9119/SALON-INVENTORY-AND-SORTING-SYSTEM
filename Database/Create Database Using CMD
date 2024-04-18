@@ -1,0 +1,46 @@
+CREATE DATABASE inventory_system;
+
+USE inventory_system
+
+CREATE TABLE accounts(
+Account_Id INT NOT NULL AUTO_INCREMENT,
+Email VARCHAR(50),
+Password VARCHAR(16),
+Username VARCHAR(50),
+Name VARCHAR(50),
+Role VARCHAR(50),
+PRIMARY KEY (Account_Id),
+UNIQUE(Username)
+);
+
+CREATE TABLE recipe(
+Color_Id INT NOT NULL AUTO_INCREMENT,
+ColorName VARCHAR(50),
+Description VARCHAR(2500),
+PRIMARY KEY(Color_Id),
+UNIQUE(ColorName)
+);
+
+CREATE TABLE inventory(
+  Item_Id INT NOT NULL AUTO_INCREMENT,
+  ItemName VARCHAR(50) NOT NULL,
+  Quantity int,
+  Description VARCHAR(2500),
+  Type VARCHAR(50),
+  PRIMARY KEY (Item_Id),
+  UNIQUE (ItemName)
+);
+
+CREATE TABLE report(
+  Report_Id INT NOT NULL AUTO_INCREMENT,
+  ReportName VARCHAR(2500),
+  Content VARCHAR(2500),
+  Date DATE,
+  Item_Id INT,
+  Account_Id INT,
+  Color_Id INT,
+  PRIMARY KEY(Report_Id),
+  FOREIGN KEY (Item_Id) REFERENCES inventory(Item_Id),
+  FOREIGN KEY (Account_Id) REFERENCES accounts(Account_Id),
+  FOREIGN KEY (Color_Id) REFERENCES recipe(Color_Id)
+);
