@@ -44,3 +44,24 @@ CREATE TABLE report(
   FOREIGN KEY (Account_Id) REFERENCES accounts(Account_Id),
   FOREIGN KEY (Color_Id) REFERENCES recipe(Color_Id)
 );
+
+CREATE TABLE notification(
+Notification_Id INT NOT NULL AUTO_INCREMENT,
+Content VARCHAR(2500),
+Timestamp DATETIME,
+Account_Id INT,
+PRIMARY KEY(Notification_Id),
+FOREIGN KEY (Account_Id) REFERENCES accounts(Account_Id)
+);
+
+CREATE TABLE request(
+Request_Id NOT NULL AUTO_INCREMENT,
+Color_Id INT,
+ColorName VARCHAR(50),
+Amount INT,
+Account_Id INT,
+PRIMARY KEY(Request_Id),
+FOREIGN KEY (Color_Id) REFERENCES recipe(Color_Id),
+FOREIGN KEY (ColorName) REFERENCES recipe(ColorName),
+FOREIGN KEY (Account_Id) REFERENCES accounts(Account_Id)
+);
