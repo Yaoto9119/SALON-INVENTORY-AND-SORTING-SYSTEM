@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(120deg,#2b47a3, #4cc0ff, #ffffff);
+    color: #fff;
+}
+
+.container .sidenav{
+    width: 115px;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    padding: 32px 16px;
+    background-color: #00349c;
+    transition: width 0.6s;
+}
+
+label .close-btn{
+    display: none;
+}
+
+.container .logo h2{
+    font-size: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+.sidenav .search_bar{
+    margin-top: 1px;
+    position: relative;
+}
+
+.sidenav .search_bar i{
+    position: absolute;
+    color: #000;
+    font-size: 24px;
+    left: 38px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sidenav .search_bar input{
+    width: 50%;
+    padding: 11px;
+    padding-left: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
+}
+
+.sidenav .menu_text{
+    margin-top: 24px;
+}
+
+.sidenav .icon_items ul{
+    list-style: none;
+    margin-top: px;
+    padding: 0 10px;
+}
+
+.sidenav .icon_items ul li{
+    cursor: pointer;
+    margin: 4px;
+    padding: 12px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s ease;
+}
+
+.icon_items .active,
+.sidenav .icon_items ul li:hover{
+    background: #28adff;
+}
+
+.sidenav .icon_items ul li i{
+    font-size: 26px;
+    padding: 0 12px;
+}
+
+.sidenav .icon_items ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+    padding-left: 18px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+#click{
+    display: none;
+}
+
+.container label{
+    position: absolute;
+    left: 3%;
+    top: 1.5%;
+    font-size: 24px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#click:checked ~ .sidenav{
+    width: 260px;
+}
+
+#click:checked ~ .sidenav .icon_items ul li a{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#click:checked ~ .sidenav .logo h2{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#click:checked ~ .sidenav .search_bar input{
+    width: 100%;
+    margin-left: 0;
+}
+
+#click:checked ~ .sidenav .search_bar i{
+    left: 20px;
+}
+
+#click:checked ~ label{
+    left: 1%;
+}
+
+#click:checked ~ label .close-btn{
+    display: block;
+}
+
+#click:checked ~ label .menu-btn{
+    display: none;
+}
+
+.list{
+    position: absolute;
+    margin: 20px;
+    border: 60px;
+    top:55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    width: 1440px;
+    height: 650px;
+    background: white;
+  }
+
+.list form{
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+  form .txt_field{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+  }
+  .txt_field input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+  }
+  .txt_field label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+  }
+  .txt_field span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .5s;
+  }
+  .txt_field input:focus ~ label,
+  .txt_field input:valid ~ label{
+    top: -5px;
+    color: #2691d9;
+  }
+  .txt_field input:focus ~ span::before,
+  .txt_field input:valid ~ span::before{
+    width: 100%;
+  }
+  .pass{
+    margin: -5px 0 20px 5px;
+    color: #a6a6a6;
+    cursor: pointer;
+  }
+  .pass:hover{
+    text-decoration: underline;
+  }
+  input[type="submit"]{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 25px;
+    font-size: 16px;
+    color: #e9f4fb;
+    font-weight: 900;
+    cursor: pointer;
+    outline: none;
+  }
+  input[type="submit"]:hover{
+    border-color: #2691d9;
+    transition: .5s;
+  }
+  .add-account-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+.list table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.list th,
+.list td {
+    padding: 8px;
+    text-align: left;
+    
+   
+}
+
+.list th.remove,
+.list td.remove {
+    width: 120px;
+    padding: 0;
+    text-align: center;
+}
+
+.remove-button {
+    background-color: red;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.remove-button:hover {
+    background-color: darkred;
+}
+.list button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 20px; /* Adjust as needed */
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.list button:hover {
+    background-color: #45a049; /* Darker Green */
+}

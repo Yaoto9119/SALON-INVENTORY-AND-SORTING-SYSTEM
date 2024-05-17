@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Navigation Menu</title>
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="account.css">
+    <!-- Icon Link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <input type="checkbox" id="click">
+        <label for="click">
+            <i class='menu-btn bx bx-menu'></i>
+            <i class='close-btn bx bx-x-circle'></i>
+        </label>
+        <div class="sidenav">
+            <div class="logo">
+                <h2><img src="jpsalon.png" alt="logo" width="100" height="100" class=""></h2>
+            </div>
+            <div class="search_bar">
+                <form action="#">
+                    <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Search...">
+                </form>
+            </div>
+            <div class="icon_items">
+                <ul>
+                    <li>
+                        <i class='bx bxs-home'></i>
+                        <a href="admin.html">Home</a>
+                    </li>
+                    <li class="active">
+                        <i class='bx bxs-user-circle'></i>
+                        <a href="account.html">Accounts</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-shopping-bag'></i>
+                        <a href="product.html">Products</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-message-dots'></i>
+                        <a href="#">Message</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-bar-chart-alt-2'></i>
+                        <a href="#">Activity</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-bell'></i>
+                        <a href="#">Notification</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-group'></i>
+                        <a href="#">Group</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-cog'></i>
+                        <a href="setting.html">Settings</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-help-circle'></i>
+                        <a href="#">Help</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-log-in'></i>
+                        <a href="#" onclick="confirmLogout()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="list">
+        <form method="post">
+            <h2>Products</h2>
+            <div class="txt_field">
+                <input type="text" required>
+                <span></span>
+                <label>Search</label>
+            </div>
+            <button type="button" class="add-account-button" onclick="window.location.href = 'additem.html';">Add Product</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Item Name</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                        <th class="remove">Remove Item</th>
+                        <th class="update">Update Item</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list">
+                    <tr>
+                        <td>1</td>
+                        <td>Schwartscopff Hair Treatment</td>
+                        <td>Used to treat hair</td>
+                        <td>Hair Treatment</td>
+                        <td class="remove"><button type="button" class="remove-button"><i class="fas fa-times"></i></button></td>
+                        <td class="update"><button type="button" class="update-button" onclick="updateItem(this)"><i class="fas fa-edit"></i></button></td>
+                    <tr>
+                        <td>2</td>
+                        <td>Palmolive Hair Conditioner</td>
+                        <td>Used to condition hair</td>
+                        <td>Hair Conditioner</td>
+                        <td class="remove"><button type="button" class="remove-button"><i class="fas fa-times"></i></button></td>
+                        <td class="update"><button type="button" class="update-button" onclick="updateItem(this)"><i class="fas fa-edit"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Nivea Body Lotion</td>
+                        <td>Used clean the Body</td>
+                        <td>Body Lotion</td>
+                        <td class="remove"><button type="button" class="remove-button"><i class="fas fa-times"></i></button></td>
+                        <td class="update"><button type="button" class="update-button" onclick="updateItem(this)"><i class="fas fa-edit"></i></button></td>
+                    </tr>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="reloadPage()">Reload Page</button>
+        </div>
+        </form>
+    </div>
+
+    <div id="update-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form id="update-form">
+                <h2>Update Item</h2>
+                <input type="hidden" id="update-id">
+                <div class="txt_field">
+                    <input type="text" id="update-name" required>
+                    <span></span>
+                    <label>Item Name</label>
+                </div>
+                <div class="txt_field">
+                    <input type="text" id="update-description" required>
+                    <span></span>
+                    <label>Description</label>
+                </div>
+                <div class="txt_field">
+                    <input type="text" id="update-type" required>
+                    <span></span>
+                    <label>Type</label>
+                </div>
+                <input type="button" value="Update" onclick="saveUpdate()">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function confirmLogout() {
+            if (confirm("Are you sure you want to log out?")) {
+                window.location.href = "login.html";
+            } else {
+
+            }
+        }
+
+        function updateItem(button) {
+            var row = button.closest('tr');
+            var id = row.cells[0].innerText;
+            var name = row.cells[1].innerText;
+            var description = row.cells[2].innerText;
+            var type = row.cells[3].innerText;
+
+            document.getElementById('update-id').value = id;
+            document.getElementById('update-name').value = name;
+            document.getElementById('update-description').value = description;
+            document.getElementById('update-type').value = type;
+
+            document.getElementById('update-modal').style.display = 'block';
+        }
+
+        function saveUpdate() {
+            var id = document.getElementById('update-id').value;
+            var name = document.getElementById('update-name').value;
+            var description = document.getElementById('update-description').value;
+            var type = document.getElementById('update-type').value;
+
+            var table = document.getElementById('product-list');
+            for (var i = 0, row; row = table.rows[i]; i++) {
+                if (row.cells[0].innerText == id) {
+                    row.cells[1].innerText = name;
+                    row.cells[2].innerText = description;
+                    row.cells[3].innerText = type;
+                    break;
+                }
+            }
+
+            closeModal();
+        }
+
+        function closeModal() {
+            document.getElementById('update-modal').style.display = 'none';
+        }
+
+        // Modal CSS
+        var modalStyle = document.createElement('style');
+        modalStyle.innerHTML = `
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0,0.4);
+                padding-top: 60px;
+            }
+            .modal-content {
+                background-color: #fefefe;
+                margin: 5% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                max-width: 500px;
+                border-radius: 10px;
+            }
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        `;
+        document.head.appendChild(modalStyle);
+        function reloadPage() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
